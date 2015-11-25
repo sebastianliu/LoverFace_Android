@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="theme_bg_color">#EEEEEE</color>
+    <color name="theme_bg_color">#00EEEEEE</color>
     <color name="white">#FFFFFF</color>
     <color name="base_color_text_white">#FFFFFF</color>
     <color name="base_color_text_gray">#9fa0a0</color>

@@ -8,16 +8,15 @@
         android:id="@+id/id_viewpager"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" >
-    </android.support.v4.view.ViewPager>
+        android:layout_weight="1"></android.support.v4.view.ViewPager>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:background="@drawable/tabbg"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
-        <com.computinglife.testforoxford.ui.ChangeColorIconWithTextView
+        <com.computinglife.loverface.ui.ChangeColorIconWithTextView
             android:id="@+id/id_indicator_one"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
@@ -27,7 +26,7 @@
             oxford:text="@string/tab_testface"
             oxford:text_size="12sp" />
 
-        <com.computinglife.testforoxford.ui.ChangeColorIconWithTextView
+        <com.computinglife.loverface.ui.ChangeColorIconWithTextView
             android:id="@+id/id_indicator_two"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
@@ -37,7 +36,7 @@
             oxford:text="@string/tab_contact"
             oxford:text_size="12sp" />
 
-        <com.computinglife.testforoxford.ui.ChangeColorIconWithTextView
+        <com.computinglife.loverface.ui.ChangeColorIconWithTextView
             android:id="@+id/id_indicator_three"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
@@ -47,7 +46,7 @@
             oxford:text="@string/tab_find"
             oxford:text_size="12sp" />
 
-        <com.computinglife.testforoxford.ui.ChangeColorIconWithTextView
+        <com.computinglife.loverface.ui.ChangeColorIconWithTextView
             android:id="@+id/id_indicator_four"
             android:layout_width="0dp"
             android:layout_height="fill_parent"

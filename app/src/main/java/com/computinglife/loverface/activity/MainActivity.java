@@ -170,6 +170,7 @@ public class MainActivity extends FragmentActivity implements
                     m.setAccessible(true);
                     m.invoke(menu, true);
                 } catch (Exception e) {
+
                 }
             }
         }
@@ -188,5 +189,4 @@ public class MainActivity extends FragmentActivity implements
             e.printStackTrace();
         }
     }
-
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="icon_oxford" format="reference" />
+    <attr name="color_oxford" format="color" />
+    <attr name="text" format="string" />
+    <attr name="text_size" format="dimension" />
+
+    <declare-styleable name="ChangeColorIconView">
+        <attr name="icon_oxford" />
+        <attr name="color_oxford" />
+        <attr name="text" />
+        <attr name="text_size" />
+    </declare-styleable>
+</resources>

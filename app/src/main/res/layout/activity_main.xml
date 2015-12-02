@@ -33,7 +33,7 @@
             android:layout_weight="1"
             android:padding="5dp"
             oxford:icon_oxford="@mipmap/ic_menu_friendslist"
-            oxford:text="@string/tab_contact"
+            oxford:text="@string/tab_loverface"
             oxford:text_size="12sp" />
 
         <com.computinglife.loverface.ui.ChangeColorIconWithTextView

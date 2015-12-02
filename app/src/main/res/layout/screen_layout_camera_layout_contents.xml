@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/screen_layout_camera_layout_no_triangle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/xml_camera_background"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/margin_half"
+        android:paddingRight="@dimen/margin_half">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="64.0dip"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/screen_layout_camera_layout_button_camera"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:contentDescription="Camera popup camera source"
+                android:drawablePadding="2.0dip"
+                android:drawableTop="@drawable/xml_recent_camera"
+                android:paddingBottom="6.0dip"
+                android:paddingTop="10.0dip"
+                android:text="@string/choose_photo_source_camera"
+                android:textColor="@drawable/xml_pressed_state_black_text"
+                android:textSize="@dimen/txt_caption" />
+
+            <View
+                android:id="@+id/screen_layout_camera_layout_line_separator"
+                android:layout_width="1.0px"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:background="@color/black" />
+
+            <Button
+                android:id="@+id/screen_layout_camera_layout_button_gallery"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:contentDescription="Camera popup gallery source"
+                android:drawablePadding="2.0dip"
+                android:drawableTop="@drawable/xml_recent_gallery"
+                android:paddingBottom="6.0dip"
+                android:paddingTop="10.0dip"
+                android:text="@string/choose_photo_source_gallery"
+                android:textColor="@drawable/xml_pressed_state_black_text"
+                android:textSize="@dimen/txt_caption" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/screen_layout_camera_layout_triangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/screen_layout_camera_layout_no_triangle"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/recent_triangle" />
+
+</RelativeLayout>

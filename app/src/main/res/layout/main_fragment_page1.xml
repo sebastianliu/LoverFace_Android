@@ -11,7 +11,7 @@
     tools:context="com.computinglife.testforoxford.activity.TestFaceActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView_fortestface"
         android:layout_width="200dp"
         android:layout_height="250dp"
         android:layout_alignParentEnd="true"
@@ -20,19 +20,19 @@
         android:background="@mipmap/user_default_male" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_testface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Browse for Photos"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignStart="@+id/imageView2"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/imageView_fortestface"
+        android:layout_below="@+id/imageView_fortestface"
+        android:text="Browse for Photos" />
 
-    <EditText
+    <TextView
+        android:id="@+id/text_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText1"
-        android:layout_below="@+id/button2"
-        android:layout_alignStart="@+id/button2"
-        android:layout_alignEnd="@+id/button2" />
+        android:layout_alignEnd="@+id/button_testface"
+        android:layout_alignStart="@+id/button_testface"
+        android:layout_below="@+id/button_testface" />
 </RelativeLayout>

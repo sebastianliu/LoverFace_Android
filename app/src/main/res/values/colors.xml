@@ -8,4 +8,5 @@
     <color name="base_color_text_white">#FFFFFF</color>
     <color name="base_color_text_gray">#9fa0a0</color>
     <color name="silver">#C0C0C0</color>
+    <color name="black">#ff000000</color>
 </resources>

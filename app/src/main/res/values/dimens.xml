@@ -3,4 +3,212 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="top_bar_height">50dp</dimen>
+    <dimen name="photo_list_bottom_bar_height">45dp</dimen>
+    <dimen name="top">50dp</dimen>
+    <dimen name="bottom">40dp</dimen>
+    <dimen name="header_height">230dip</dimen>
+    <dimen name="tabs_height">64dip</dimen>
+    <dimen name="header_size_96px">48dp</dimen>
+    <dimen name="stroke_width">2dp</dimen>
+    <dimen name="padding10">10dp</dimen>
+
+    <!-- 首页底部tab高度 -->
+    <dimen name="activity_main_tab_height">48dp</dimen>
+    <dimen name="activity_main_tab_image_height">23dp</dimen>
+
+    <!-- 悠悠话 -->
+    <dimen name="whisper_top_text_max_size">22sp</dimen>
+    <dimen name="whisper_top_text_min_size">16sp</dimen>
+    <dimen name="whisper_img_padding">5dp</dimen>
+    <dimen name="whisper_listview_double_column_bottom_height">20dp</dimen>
+    <dimen name="whisper_listview_single_column_bottom_height">50dp</dimen>
+    <dimen name="whisper_listview_single_user_photo_size">35dp</dimen>
+    <dimen name="whisper_comment_input_emoji_size">22dp</dimen>
+
+    <!-- 主题fragment -->
+    <dimen name="theme_listview_divider_height">7dp</dimen>
+    <dimen name="theme_listview_padding">7dp</dimen>
+    <dimen name="theme_listitem_height">300dp</dimen>
+    <dimen name="theme_bottom_bar_height">120dp</dimen>
+    <dimen name="theme_bottom_bar_padding">8dp</dimen>
+
+    <!-- 个人主页 -->
+    <dimen name="user_profile_img_padding">3dp</dimen>
+    <dimen name="user_profile_add_photo_text_size">8sp</dimen>
+    <dimen name="user_profile_whisper_status_text_height">20dp</dimen>
+    <dimen name="user_profile_whisper_status_text_size">8sp</dimen>
+
+    <!-- 发布界面 -->
+    <dimen name="whisper_publis_bottom_font_menu_height">65dp</dimen>
+    <dimen name="whisper_publis_show_default_typeface_size">17sp</dimen>
+    <dimen name="whisper_publis_show_other_typeface_size">19sp</dimen>
+    <dimen name="pager_margin">45dp</dimen>
+    <dimen name="page_margin">15dp</dimen>
+    <dimen name="activity_splash_textview_logoname_margin_bottom">140.0px</dimen>
+    <!-- EyeEm -->
+    <dimen name="album_header_photo_size">64.0dip</dimen>
+    <dimen name="album_photos_height">120.0dip</dimen>
+    <dimen name="album_widget_image_size">80.0dip</dimen>
+    <dimen name="bubble_country_text_size">16.0dip</dimen>
+    <dimen name="bubble_h_spacing">3.0dip</dimen>
+    <dimen name="bubble_padding">2.0dip</dimen>
+    <dimen name="bubble_radius">2.0dip</dimen>
+    <dimen name="bubble_text_size">14.0dip</dimen>
+    <dimen name="bubble_v_spacing">3.0dip</dimen>
+    <dimen name="button_border_radius">2.0dip</dimen>
+    <dimen name="button_height">48.0dip</dimen>
+    <dimen name="button_padding">16.0dip</dimen>
+    <dimen name="button_small_height">32.0dip</dimen>
+    <dimen name="button_small_padding">12.0dip</dimen>
+    <dimen name="button_small_txt_height">14.0sp</dimen>
+
+    <item name="button_txt_size" type="dimen">@dimen/txt_caption</item>
+
+    <dimen name="camera_widget_padding">2.0dip</dimen>
+    <dimen name="camera_widget_side">76.0dip</dimen>
+    <dimen name="ck_adjustment_item_height">100.0dip</dimen>
+    <dimen name="ck_adjustment_item_width">80.0dip</dimen>
+    <dimen name="ck_bound_width">2.0px</dimen>
+    <dimen name="ck_crop_circle_radius">8.0dip</dimen>
+    <dimen name="ck_crop_divider_size">24.0dip</dimen>
+    <dimen name="ck_crop_text_size">10.0sp</dimen>
+    <dimen name="ck_crop_view_padding">24.0dip</dimen>
+    <dimen name="ck_dimen_anim_distance_hide">36.0dip</dimen>
+    <dimen name="ck_dimen_anim_distance_show">64.0dip</dimen>
+    <dimen name="ck_dimen_format_seekbar_margin_bottom">0.0dip</dimen>
+    <dimen name="ck_dimen_format_seekbar_margin_top">24.0dip</dimen>
+    <dimen name="ck_dimen_format_text_margin_top">0.0dip</dimen>
+    <dimen name="ck_dimen_format_text_size">12.0sp</dimen>
+    <dimen name="ck_dimen_recycler_view_size">100.0dip</dimen>
+    <dimen name="ck_dimen_seekbar_use_landscape_padding_top">18.0dip</dimen>
+    <dimen name="ck_dimen_toast_bottom_offset">24.0dip</dimen>
+    <dimen name="ck_dimen_toolbars_button_margin">0.0dip</dimen>
+    <dimen name="ck_dimen_toolbars_button_size">44.0dip</dimen>
+    <dimen name="ck_dimen_toolbars_main_size">64.0dip</dimen>
+    <dimen name="ck_dimen_toolbars_second_size">64.0dip</dimen>
+    <dimen name="ck_dimen_toolbars_size">128.0dip</dimen>
+    <dimen name="ck_dimen_toolbars_use_landscape_left">80.0dip</dimen>
+    <dimen name="ck_dimen_toolbars_use_landscape_right">88.0dip</dimen>
+    <dimen name="ck_dimen_triangle_draw_offset">39.0dip</dimen>
+    <dimen name="ck_dimen_triangle_pad_bottom">20.0dip</dimen>
+    <dimen name="ck_dimen_triangle_pad_top">0.0dip</dimen>
+    <dimen name="ck_divider_size">4.0dip</dimen>
+    <dimen name="ck_divider_width">1.0px</dimen>
+    <dimen name="ck_filter_max_other_size">108.0dip</dimen>
+    <dimen name="ck_filter_min_other_size">60.0dip</dimen>
+    <dimen name="ck_filter_size">80.0dip</dimen>
+    <dimen name="ck_format_adapter_height">100.0dip</dimen>
+    <dimen name="ck_format_center_marker_threshold">2.0dip</dimen>
+    <dimen name="ck_format_rounded_corners_size">2.0px</dimen>
+    <dimen name="ck_format_seekbar_marker_distance">8.0dip</dimen>
+    <dimen name="ck_highlight_height">16.0dip</dimen>
+    <dimen name="ck_highlight_text_left_margin">8.0dip</dimen>
+    <dimen name="ck_highlight_text_size">12.0sp</dimen>
+    <dimen name="ck_nav_bar_height">50.0dip</dimen>
+    <dimen name="ck_surface_bottom_margin">128.0dip</dimen>
+    <dimen name="ck_surface_left_margin">0.0dip</dimen>
+    <dimen name="ck_surface_right_margin">0.0dip</dimen>
+    <dimen name="ck_surface_top_margin">0.0dip</dimen>
+    <dimen name="collections_bottom_padding">8.0dip</dimen>
+    <dimen name="collections_list_padding">0.0dip</dimen>
+    <dimen name="com_facebook_likeboxcountview_border_radius">3.0dip</dimen>
+    <dimen name="com_facebook_likeboxcountview_border_width">1.0dip</dimen>
+    <dimen name="com_facebook_likeboxcountview_caret_height">3.0dip</dimen>
+    <dimen name="com_facebook_likeboxcountview_caret_width">6.0dip</dimen>
+    <dimen name="com_facebook_likeboxcountview_text_padding">6.0dip</dimen>
+    <dimen name="com_facebook_likeboxcountview_text_size">11.0sp</dimen>
+    <dimen name="com_facebook_likebutton_compound_drawable_padding">8.0dip</dimen>
+    <dimen name="com_facebook_likebutton_padding_bottom">0.0dip</dimen>
+    <dimen name="com_facebook_likebutton_padding_left">8.0dip</dimen>
+    <dimen name="com_facebook_likebutton_padding_right">8.0dip</dimen>
+    <dimen name="com_facebook_likebutton_padding_top">0.0dip</dimen>
+    <dimen name="com_facebook_likebutton_text_size">13.0sp</dimen>
+    <dimen name="com_facebook_likeview_edge_padding">2.0dip</dimen>
+    <dimen name="com_facebook_likeview_internal_padding">6.0dip</dimen>
+    <dimen name="com_facebook_likeview_text_size">11.0sp</dimen>
+    <dimen name="com_facebook_loginview_compound_drawable_padding">12.0dip</dimen>
+    <dimen name="com_facebook_loginview_padding_bottom">12.0dip</dimen>
+    <dimen name="com_facebook_loginview_padding_left">12.0dip</dimen>
+    <dimen name="com_facebook_loginview_padding_right">16.0dip</dimen>
+    <dimen name="com_facebook_loginview_padding_top">12.0dip</dimen>
+    <dimen name="com_facebook_loginview_text_size">16.0sp</dimen>
+    <dimen name="com_facebook_picker_place_image_size">64.0dip</dimen>
+    <dimen name="com_facebook_profilepictureview_preset_size_large">180.0dip</dimen>
+    <dimen name="com_facebook_profilepictureview_preset_size_normal">100.0dip</dimen>
+    <dimen name="com_facebook_profilepictureview_preset_size_small">50.0dip</dimen>
+    <dimen name="com_facebook_tooltip_horizontal_padding">10.0dip</dimen>
+    <dimen name="com_facebook_usersettingsfragment_profile_picture_height">64.0dip</dimen>
+    <dimen name="com_facebook_usersettingsfragment_profile_picture_width">64.0dip</dimen>
+    <dimen name="comments_auto_complete">220.0dip</dimen>
+    <dimen name="default_bubble_text_pad">2.0sp</dimen>
+    <dimen name="default_bubble_text_size">16.0sp</dimen>
+
+    <item name="default_chips_line_spacing" type="dimen">1.25</item>
+
+    <dimen name="default_chips_text_size">16.0sp</dimen>
+    <dimen name="discover_header_padding">8.0dip</dimen>
+    <dimen name="grid_base_height">120.0dip</dimen>
+    <dimen name="grid_padding">4.0dip</dimen>
+    <dimen name="header_album_height">192.0dip</dimen>
+    <dimen name="header_discover_height">192.0dip</dimen>
+    <dimen name="header_mission_height">220.0dip</dimen>
+    <dimen name="header_user_height">200.0dip</dimen>
+    <dimen name="margin_big">16.0dip</dimen>
+    <dimen name="margin_form">24.0dip</dimen>
+    <dimen name="margin_half">4.0dip</dimen>
+    <dimen name="margin_normal">8.0dip</dimen>
+    <dimen name="margin_normal_big">12.0dip</dimen>
+    <dimen name="margin_tablet_avatar">52.0dip</dimen>
+    <dimen name="missions_card_height">232.0dip</dimen>
+    <dimen name="missions_header_padding">16.0dip</dimen>
+    <dimen name="missions_padding">0.0dip</dimen>
+    <dimen name="missions_padding_bottom">4.0dip</dimen>
+    <dimen name="nav_drawer_profile_image_size">112.0dip</dimen>
+    <dimen name="news_drawer_image_size">48.0dip</dimen>
+    <dimen name="nophotocoachmark_background_height">148.0dip</dimen>
+    <dimen name="onboarding_logo_margin">48.0dip</dimen>
+    <dimen name="onboarding_text_size">24.0sp</dimen>
+    <dimen name="onboarding_vert_button_margin">12.0dip</dimen>
+    <dimen name="open_edit_page_2_top_area">154.0dip</dimen>
+    <dimen name="open_edit_title_margin_bottom">20.0dip</dimen>
+    <dimen name="open_edit_title_margin_top">24.0dip</dimen>
+    <dimen name="open_edit_toast_size">144.0dip</dimen>
+    <dimen name="photo_options_width">240.0dip</dimen>
+    <dimen name="profile_image">48.0dip</dimen>
+    <dimen name="ptr_progress_bar_stroke_width">4.0dip</dimen>
+    <dimen name="share_icon_side_upload">48.0dip</dimen>
+    <dimen name="signup_img">48.0dip</dimen>
+    <dimen name="slideShow_drag_view_height">96.0dip</dimen>
+    <dimen name="slideShow_drag_view_max_height">128.0dip</dimen>
+    <dimen name="spb_default_stroke_separator_length">4.0dip</dimen>
+    <dimen name="spb_default_stroke_width">4.0dip</dimen>
+    <dimen name="tbsu_empty_view_friends_text_width">260.0dip</dimen>
+    <dimen name="tbsu_empty_view_margin_bottom">0.0dip</dimen>
+    <dimen name="tbsu_empty_view_margin_text">40.0dip</dimen>
+    <dimen name="tbsu_empty_view_margin_text_left">0.0dip</dimen>
+    <dimen name="tbsu_empty_view_profile_text_width">260.0dip</dimen>
+    <dimen name="txt_album_user">20.0sp</dimen>
+    <dimen name="txt_big">18.0sp</dimen>
+    <dimen name="txt_caption">16.0sp</dimen>
+    <dimen name="txt_headline">24.0sp</dimen>
+    <dimen name="txt_normal">14.0sp</dimen>
+    <dimen name="txt_small">12.0sp</dimen>
+    <dimen name="txt_very_small">12.0sp</dimen>
+    <dimen name="user_album_image_size">48.0dip</dimen>
+    <dimen name="user_header_photo_marginBottom">8.0dip</dimen>
+    <dimen name="user_header_photo_marginTop">8.0dip</dimen>
+    <dimen name="user_header_profile_photo_size">72.0dip</dimen>
+
+    <item name="user_header_title_size" type="dimen">@dimen/txt_caption</item>
+
+    <dimen name="user_profile_image_big">64.0dip</dimen>
+    <dimen name="whats_new_margin">10.0dip</dimen>
+    <dimen name="widget_margin">0.0dip</dimen>
+
+    <dimen name="waterfall_image_height">120dip</dimen>
+
+
+    <dimen name="found_image_height">100dip</dimen>
 </resources>

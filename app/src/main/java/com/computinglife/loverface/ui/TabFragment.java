@@ -1,28 +1,31 @@
 package com.computinglife.loverface.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.PopupWindow;
 
+import com.computinglife.loverface.Global.Global;
+import com.computinglife.loverface.LoverFaceApplication;
 import com.computinglife.loverface.R;
 import com.computinglife.loverface.activity.MainActivity;
+import com.computinglife.loverface.util.DataTools;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by youngliu on 11/25/15.
@@ -32,7 +35,10 @@ public class TabFragment extends Fragment {
     private Activity context;
     private Resources resources;
     private LayoutInflater inflater;
-
+    private Button buttonUpload;
+    private static final int REQUEST_CODE_PICK_PHOTO_FROM_CAMERA = 0;
+    private static final int REQUEST_CODE_PICK_PICTURE = 1;
+    private String mPicturePath;
 
     public TabFragment() {
 
@@ -56,58 +62,90 @@ public class TabFragment extends Fragment {
         Log.i("pageindex>>>>>", index + "");
         switch (index) {
             case MainActivity.PAGE0:
+                //测颜界面
                 view = inflater.inflate(R.layout.main_fragment_page1, null);
-                GridView gridview = (GridView) view.findViewById(R.id.GridView);
-                gridview.setSelector(new ColorDrawable(Color.TRANSPARENT));
-                ArrayList<HashMap<String, Object>> meumList = new ArrayList<>();
-                int[] icons = {R.mipmap.test_face, R.mipmap.lover_test, R.mipmap.uglily};
-                String[] strings = {resources.getString(R.string.page1_testface), resources.getString(R.string.page1_loversface), resources.getString(R.string.page1_uglily)};
-                for (int i = 0; i < icons.length; i++) {
-                    HashMap<String, Object> map = new HashMap<>();
-                    map.put("ItemImage", icons[i]);
-                    map.put("ItemText", strings[i]);
-                    meumList.add(map);
-                }
-                SimpleAdapter saItem = new SimpleAdapter(context, meumList, R.layout.page1_item, new String[]{"ItemImage", "ItemText"}, new int[]{R.id.ItemImage, R.id.ItemText});
-
-                //添加Item到网格中
-                gridview.setAdapter(saItem);
-                //添加点击事件
-                gridview.setOnItemClickListener(
-                        new AdapterView.OnItemClickListener() {
-                            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                                int index = arg2 + 1;//id是从0开始的，所以需要+1
-                                Toast.makeText(context, "你按下了选项：" + index, Toast.LENGTH_SHORT).show();
-                                //Toast用于向用户显示一些帮助/提示
-                                ImageView itemImg = (ImageView) arg1.findViewById(R.id.ItemImage);
-                                Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.alpha);
-                                itemImg.startAnimation(animation);
-                                //根据不同的index跳转到相应的页面
-                                switch (arg2) {
-                                    case 0:
-                                        //选项一:测试颜值
-//                                        Intent intent = new Intent(context, TestFaceActivity.class);
-//                                        Bundle bundle = new Bundle();
-//                                        bundle.putString("test", "fortest");
-//                                        context.startActivity(intent);
-                                        break;
-                                    case 1:
-
-                                        break;
-                                    case 2:
-
-                                        break;
-                                    default:
-
-                                        break;
-                                }
-
-                            }
-                        }
-                );
+                //浏览或拍照按钮
+                buttonUpload = (Button) view.findViewById(R.id.button_testface);
+                buttonUpload.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showPopupWindow();
+                    }
+                });
 
         }
 
         return view;
+    }
+
+    public void showPopupWindow() {
+        View popupwindow = inflater.inflate(R.layout.screen_layout_camera_layout_contents, null);
+        final PopupWindow mPop = new PopupWindow(popupwindow, Global.SCREEN_WIDTH * 7 / 8, ViewGroup.LayoutParams.WRAP_CONTENT);
+        Button screen_layout_camera_layout_button_gallery = (Button) popupwindow
+                .findViewById(R.id.screen_layout_camera_layout_button_gallery);
+        Button screen_layout_camera_layout_button_camera = (Button) popupwindow
+                .findViewById(R.id.screen_layout_camera_layout_button_camera);
+        mPop.setFocusable(true);
+        mPop.setOutsideTouchable(true);
+        mPop.setBackgroundDrawable(new BitmapDrawable());
+        backgroundAlpha(0.5f);
+        mPop.setAnimationStyle(R.style.mypopwindow_anim_style);
+        mPop.showAtLocation(buttonUpload, Gravity.BOTTOM, 0, buttonUpload.getHeight() + DataTools.px2dip(context, 100));
+        mPop.setOnDismissListener(new poponDismissListener());
+
+        screen_layout_camera_layout_button_camera.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mPop.dismiss();
+                File newfile = new File(Global.UPLOAD_USER_PHOTO_TEMP_FILE_PATH);// tmp file
+                try {
+                    newfile.createNewFile();
+                } catch (IOException e) {
+
+                }
+
+                Uri outputFileUri = Uri.fromFile(newfile);
+
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+
+                startActivityForResult(cameraIntent, REQUEST_CODE_PICK_PHOTO_FROM_CAMERA);
+
+            }
+        });
+
+        screen_layout_camera_layout_button_gallery.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mPop.dismiss();
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, REQUEST_CODE_PICK_PICTURE);
+
+            }
+        });
+
+    }
+
+    /**
+     * 设置添加屏幕的背景透明度
+     *
+     * @param bgAlpha
+     */
+    public void backgroundAlpha(float bgAlpha) {
+        WindowManager.LayoutParams lp = context.getWindow().getAttributes();
+        lp.alpha = bgAlpha; // 0.0-1.0
+        context.getWindow().setAttributes(lp);
+    }
+
+    /**
+     * 添加点击拍照按钮时弹出的popWin关闭的事件，主要是为了将背景透明度改回来
+     */
+    class poponDismissListener implements PopupWindow.OnDismissListener {
+        @Override
+        public void onDismiss() {
+            backgroundAlpha(1f);
+        }
     }
 }

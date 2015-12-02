@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
 
+import com.computinglife.loverface.LoverFaceApplication;
 import com.computinglife.loverface.R;
 import com.computinglife.loverface.ui.ChangeColorIconWithTextView;
 import com.computinglife.loverface.ui.TabFragment;
@@ -36,7 +37,6 @@ public class MainActivity extends FragmentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         setOverflowShowingAlways();
         getActionBar().setDisplayShowHomeEnabled(true);
         mViewPager = (ViewPager) findViewById(R.id.id_viewpager);

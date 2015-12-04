@@ -21,6 +21,11 @@ public class LoverFaceApplication extends Application {
     private static LoverFaceApplication instance;
     public static boolean isDebug = true;// 设置打印日志 ，为false的时候为关闭
 
+    /**
+     * 用户设置的preference文件名：{@value}
+     */
+    public final static String SETTINGS = "settings";
+
     // sd卡根目录
     private String sdcard_base_path;
 
@@ -35,7 +40,7 @@ public class LoverFaceApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.e(">>>>>>>>>>>>>>","panic");
+        Log.e(">>>>>>>>>>>>>>", "panic");
         instance = this;
         initBaseDir();
         //设备宽高初始化

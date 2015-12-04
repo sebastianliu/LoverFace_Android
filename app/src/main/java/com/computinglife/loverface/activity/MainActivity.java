@@ -40,9 +40,7 @@ public class MainActivity extends FragmentActivity implements
         setOverflowShowingAlways();
         getActionBar().setDisplayShowHomeEnabled(true);
         mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
-
         initDatas();
-
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOnPageChangeListener(this);
     }

@@ -3,6 +3,7 @@ package com.computinglife.loverface.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import com.computinglife.loverface.Global.Global;
@@ -36,6 +38,7 @@ public class TabFragment extends Fragment {
     private Resources resources;
     private LayoutInflater inflater;
     private Button buttonUpload;
+    private ImageView imageViewPage1;
     private static final int REQUEST_CODE_PICK_PHOTO_FROM_CAMERA = 0;
     private static final int REQUEST_CODE_PICK_PICTURE = 1;
     private String mPicturePath;
@@ -64,6 +67,7 @@ public class TabFragment extends Fragment {
             case MainActivity.PAGE0:
                 //测颜界面
                 view = inflater.inflate(R.layout.main_fragment_page1, null);
+                imageViewPage1 = (ImageView)view.findViewById(R.id.imageView_fortestface);
                 //浏览或拍照按钮
                 buttonUpload = (Button) view.findViewById(R.id.button_testface);
                 buttonUpload.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +130,36 @@ public class TabFragment extends Fragment {
             }
         });
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_PICK_PICTURE && resultCode == Activity.RESULT_OK && null != data) {
+
+            Uri selectedImage = data.getData();
+            String[] filePathColumns = new String[] { MediaStore.Images.Media.DATA };
+            Cursor c = context.getContentResolver().query(selectedImage, filePathColumns, null, null, null);
+            if (c == null) {
+                mPicturePath = selectedImage.getPath(); // 有些手机会为空 需要判断下
+            }
+
+            else {
+                c.moveToFirst();
+                int columnIndex = c.getColumnIndex(filePathColumns[0]);
+                mPicturePath = c.getString(columnIndex);
+                c.close();
+            }
+            Log.i("回传的照片路径", mPicturePath);
+
+
+            return;
+        } else if (requestCode == REQUEST_CODE_PICK_PHOTO_FROM_CAMERA && resultCode == Activity.RESULT_OK) {
+            Intent i = new Intent();
+            i.putExtra("mPicturePath", Global.UPLOAD_USER_PHOTO_TEMP_FILE_PATH);
+            Log.i("回传照片路径",Global.UPLOAD_USER_PHOTO_TEMP_FILE_PATH);
+
+        }
     }
 
     /**

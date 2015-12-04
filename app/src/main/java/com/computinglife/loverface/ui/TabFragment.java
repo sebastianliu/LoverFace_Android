@@ -76,6 +76,7 @@ public class TabFragment extends Fragment {
         context = getActivity();
         resources = getResources();
         inflater = LayoutInflater.from(context);
+        getUploadToken();
     }
 
     @Override
@@ -195,9 +196,9 @@ public class TabFragment extends Fragment {
                     Log.i("Page0回传的照片路径", mPicturePathPage0);
                     Bitmap bitmap = ImageUtil.decodeSampledBitmapFromResource(mPicturePathPage0, 1000, 1000);
                     imageViewPage0.setImageBitmap(bitmap);
-                    showProgress(progress);
+                    showProgress(progress, "正在检测，请稍后……");
                     //upload photo
-                    getUploadToken();
+
 
                     String key = CommonUtil.getUUID();
                     uploadPictrue(mPicturePathPage0, key);
@@ -210,9 +211,8 @@ public class TabFragment extends Fragment {
                     Log.i("Page0回传照片路径", Global.UPLOAD_USER_PHOTO_TEMP_FILE_PATH);
                     Bitmap bitmap = ImageUtil.decodeSampledBitmapFromResource(mPicturePathPage0, 700, 700);
                     imageViewPage0.setImageBitmap(bitmap);
-                    showProgress(progress);
+                    showProgress(progress, "正在检测，请稍后……");
                     //upload photo
-                    getUploadToken();
 
 
                 }
@@ -260,7 +260,7 @@ public class TabFragment extends Fragment {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, String responseString,
                                           Throwable throwable) {
-                        Log.e(">>>>","faile");
+                        Log.e(">>>>", "faile");
                     }
 
                     @Override
@@ -281,18 +281,20 @@ public class TabFragment extends Fragment {
 
     /**
      * 显示进度提示
+     *
      * @param progress
      */
-    public void showProgress(ProgressDialog progress) {
-        progress.setMessage("正在检测中，请稍后……");
+    public void showProgress(ProgressDialog progress, String message) {
+        progress.setMessage(message);
         progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progress.setIndeterminate(true);
-        progress.setProgress(0);
+        progress.setIndeterminate(false);
+        progress.setProgress(100);
         progress.show();
     }
 
     /**
      * 上传图片
+     *
      * @param filePath
      * @param key
      */
@@ -304,9 +306,10 @@ public class TabFragment extends Fragment {
 
                 Log.i("qiniu", info.toString());
                 if (info.isOK()) {
-                    //发消息
+                    //上传结束，发消息
                     message = new Message();
                     message.what = 2;
+                    keyPage0 = key;
                     handler.sendMessage(message);
 
                 }
@@ -315,10 +318,8 @@ public class TabFragment extends Fragment {
         }, new UploadOptions(null, null, false, new UpProgressHandler() {
             public void progress(String key, double percent) {
                 Log.i("qiniu", percent + "");
-
-                upload_percent_text = percent;
-                if (percent <= 1.0 && percent > 0) {
-
+                if (percent <= 0.9 && percent > 0) {
+                    upload_percent_text = percent;
                     message = new Message();
                     message.what = 1;
                     handler.sendMessage(message);
@@ -333,13 +334,26 @@ public class TabFragment extends Fragment {
 
         @Override
         public void handleMessage(Message msg) {
-            switch(msg.what){
+            switch (msg.what) {
                 case 1:
-                    Double picLoadPro = (upload_percent_text * 360 * 100) / 100;
-                    progress.setProgress(picLoadPro.intValue());
+                    Log.e("attention", upload_percent_text.toString());
+                    upload_percent_text *= 100;
+                    progress.setProgress(upload_percent_text.intValue());
                     break;
                 case 2:
-                    Log.e(">>>>>>>>>>>>","可以进行下一步请求");
+                    Log.e(">>>>>>>>>>>>", "可以进行下一步请求");
+                    progress.dismiss();
+                    switch (index) {
+                        case MainActivity.PAGE0:
+                            //测颜界面,回传key，请求其测试结果
+
+
+                            break;
+                        default:
+                            break;
+                    }
+
+
                     break;
                 default:
 
@@ -350,4 +364,6 @@ public class TabFragment extends Fragment {
         }
 
     }
+
+
 }

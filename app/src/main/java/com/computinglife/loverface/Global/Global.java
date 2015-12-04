@@ -5,6 +5,8 @@ package com.computinglife.loverface.Global;
  * note:记录全局信息的常量
  */
 public class Global {
+
+
     // 网络连接超时时长
     public static final int TIMEOUT_CONNECTION = 10 * 1000;
     public static final int TIMEOUT_SOCKET = 10 * 1000;

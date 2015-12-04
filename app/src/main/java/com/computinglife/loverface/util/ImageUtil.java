@@ -2,6 +2,11 @@ package com.computinglife.loverface.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+
+import java.util.List;
 
 /**
  * 图片工具类
@@ -38,5 +43,28 @@ public class ImageUtil {
         }
         return inSampleSize;
     }
+
+//    private static Bitmap drawFaceRectanglesOnBitmap(Bitmap originalBitmap, List<Object> objects) {
+//        Bitmap bitmap = originalBitmap.copy(Bitmap.Config.ARGB_8888, true);
+//        Canvas canvas = new Canvas(bitmap);
+//        Paint paint = new Paint();
+//        paint.setAntiAlias(true);
+//        paint.setStyle(Paint.Style.STROKE);
+//        paint.setColor(Color.RED);
+//        int stokeWidth = 2;
+//        paint.setStrokeWidth(stokeWidth);
+//        if (objects != null) {
+//            for (Object face : objects) {
+//
+//                canvas.drawRect(
+//                        face.left,
+//                        face.top,
+//                        face.left + face.width,
+//                        face.top + face.height,
+//                        paint);
+//            }
+//        }
+//        return bitmap;
+//    }
 
 }

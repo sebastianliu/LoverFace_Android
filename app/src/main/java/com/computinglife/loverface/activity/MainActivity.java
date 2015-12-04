@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
 
-import com.computinglife.loverface.LoverFaceApplication;
 import com.computinglife.loverface.R;
 import com.computinglife.loverface.ui.ChangeColorIconWithTextView;
 import com.computinglife.loverface.ui.TabFragment;

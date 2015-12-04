@@ -1,15 +1,18 @@
 package com.computinglife.loverface.ui;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,10 +24,24 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import com.computinglife.loverface.Global.Global;
-import com.computinglife.loverface.LoverFaceApplication;
+import com.computinglife.loverface.Global.InterfaceUrlDefine;
 import com.computinglife.loverface.R;
 import com.computinglife.loverface.activity.MainActivity;
+import com.computinglife.loverface.base.net.RequestClient;
+import com.computinglife.loverface.util.CommonUtil;
 import com.computinglife.loverface.util.DataTools;
+import com.computinglife.loverface.util.ImageUtil;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UpProgressHandler;
+import com.qiniu.android.storage.UploadManager;
+import com.qiniu.android.storage.UploadOptions;
+
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,10 +55,16 @@ public class TabFragment extends Fragment {
     private Resources resources;
     private LayoutInflater inflater;
     private Button buttonUpload;
-    private ImageView imageViewPage1;
+    private ImageView imageViewPage0;
     private static final int REQUEST_CODE_PICK_PHOTO_FROM_CAMERA = 0;
     private static final int REQUEST_CODE_PICK_PICTURE = 1;
-    private String mPicturePath;
+    private String mPicturePathPage0;
+    private String token;
+    private ProgressDialog progress;
+    private String keyPage0;
+    private Double upload_percent_text;
+    private MyHandler handler = new MyHandler();
+    private Message message = null;
 
     public TabFragment() {
 
@@ -67,9 +90,10 @@ public class TabFragment extends Fragment {
             case MainActivity.PAGE0:
                 //测颜界面
                 view = inflater.inflate(R.layout.main_fragment_page1, null);
-                imageViewPage1 = (ImageView)view.findViewById(R.id.imageView_fortestface);
+                imageViewPage0 = (ImageView) view.findViewById(R.id.imageView_fortestface);
                 //浏览或拍照按钮
                 buttonUpload = (Button) view.findViewById(R.id.button_testface);
+                progress = new ProgressDialog(context);
                 buttonUpload.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -77,10 +101,27 @@ public class TabFragment extends Fragment {
                     }
                 });
 
+                break;
+            case MainActivity.PAGE1:
+                //夫妻相界面
+
+                break;
+            case MainActivity.PAGE2:
+                //排行榜界面
+
+                break;
+            case MainActivity.PAGE3:
+                //我
+
+                break;
+            default:
+
+                break;
         }
 
         return view;
     }
+
 
     public void showPopupWindow() {
         View popupwindow = inflater.inflate(R.layout.screen_layout_camera_layout_contents, null);
@@ -135,31 +176,55 @@ public class TabFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_PICK_PICTURE && resultCode == Activity.RESULT_OK && null != data) {
+        switch (index) {
+            case MainActivity.PAGE0:
+                //界面一回调
+                if (requestCode == REQUEST_CODE_PICK_PICTURE && resultCode == Activity.RESULT_OK && null != data) {
+                    //相册
+                    Uri selectedImage = data.getData();
+                    String[] filePathColumns = new String[]{MediaStore.Images.Media.DATA};
+                    Cursor c = context.getContentResolver().query(selectedImage, filePathColumns, null, null, null);
+                    if (c == null) {
+                        mPicturePathPage0 = selectedImage.getPath(); // 有些手机会为空 需要判断下
+                    } else {
+                        c.moveToFirst();
+                        int columnIndex = c.getColumnIndex(filePathColumns[0]);
+                        mPicturePathPage0 = c.getString(columnIndex);
+                        c.close();
+                    }
+                    Log.i("Page0回传的照片路径", mPicturePathPage0);
+                    Bitmap bitmap = ImageUtil.decodeSampledBitmapFromResource(mPicturePathPage0, 1000, 1000);
+                    imageViewPage0.setImageBitmap(bitmap);
+                    showProgress(progress);
+                    //upload photo
+                    getUploadToken();
 
-            Uri selectedImage = data.getData();
-            String[] filePathColumns = new String[] { MediaStore.Images.Media.DATA };
-            Cursor c = context.getContentResolver().query(selectedImage, filePathColumns, null, null, null);
-            if (c == null) {
-                mPicturePath = selectedImage.getPath(); // 有些手机会为空 需要判断下
-            }
-
-            else {
-                c.moveToFirst();
-                int columnIndex = c.getColumnIndex(filePathColumns[0]);
-                mPicturePath = c.getString(columnIndex);
-                c.close();
-            }
-            Log.i("回传的照片路径", mPicturePath);
+                    String key = CommonUtil.getUUID();
+                    uploadPictrue(mPicturePathPage0, key);
+                    //把图片路径传给后台，让后台经过计算后返回给移动端
 
 
-            return;
-        } else if (requestCode == REQUEST_CODE_PICK_PHOTO_FROM_CAMERA && resultCode == Activity.RESULT_OK) {
-            Intent i = new Intent();
-            i.putExtra("mPicturePath", Global.UPLOAD_USER_PHOTO_TEMP_FILE_PATH);
-            Log.i("回传照片路径",Global.UPLOAD_USER_PHOTO_TEMP_FILE_PATH);
+                } else if (requestCode == REQUEST_CODE_PICK_PHOTO_FROM_CAMERA && resultCode == Activity.RESULT_OK) {
+                    //拍照
+                    mPicturePathPage0 = Global.UPLOAD_USER_PHOTO_TEMP_FILE_PATH;
+                    Log.i("Page0回传照片路径", Global.UPLOAD_USER_PHOTO_TEMP_FILE_PATH);
+                    Bitmap bitmap = ImageUtil.decodeSampledBitmapFromResource(mPicturePathPage0, 700, 700);
+                    imageViewPage0.setImageBitmap(bitmap);
+                    showProgress(progress);
+                    //upload photo
+                    getUploadToken();
 
+
+                }
+                break;
+            case MainActivity.PAGE1:
+                //夫妻相
+
+                break;
+            default:
+                break;
         }
+
     }
 
     /**
@@ -181,5 +246,108 @@ public class TabFragment extends Fragment {
         public void onDismiss() {
             backgroundAlpha(1f);
         }
+    }
+
+    /**
+     * 请求服务器上传照片token
+     */
+    private void getUploadToken() {
+        Log.e(">>>>>", "token");
+        RequestParams params = new RequestParams();
+        RequestClient.get(context, InterfaceUrlDefine.GETUPLOADPICTOKEN, params,
+                new TextHttpResponseHandler() {
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String responseString,
+                                          Throwable throwable) {
+                        Log.e(">>>>","faile");
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String responseString) {
+
+                        Log.e("上传的token", responseString);
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(responseString);
+                            token = jsonObject.getString("token");
+                            Log.e("uploadtoken", token);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    /**
+     * 显示进度提示
+     * @param progress
+     */
+    public void showProgress(ProgressDialog progress) {
+        progress.setMessage("正在检测中，请稍后……");
+        progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progress.setIndeterminate(true);
+        progress.setProgress(0);
+        progress.show();
+    }
+
+    /**
+     * 上传图片
+     * @param filePath
+     * @param key
+     */
+    private void uploadPictrue(String filePath, String key) {
+        UploadManager uploadManager = new UploadManager();
+        uploadManager.put(filePath, key, token, new UpCompletionHandler() {
+            @Override
+            public void complete(String key, ResponseInfo info, JSONObject response) {
+
+                Log.i("qiniu", info.toString());
+                if (info.isOK()) {
+                    //发消息
+                    message = new Message();
+                    message.what = 2;
+                    handler.sendMessage(message);
+
+                }
+            }
+
+        }, new UploadOptions(null, null, false, new UpProgressHandler() {
+            public void progress(String key, double percent) {
+                Log.i("qiniu", percent + "");
+
+                upload_percent_text = percent;
+                if (percent <= 1.0 && percent > 0) {
+
+                    message = new Message();
+                    message.what = 1;
+                    handler.sendMessage(message);
+                }
+
+            }
+        }, null));
+
+    }
+
+    class MyHandler extends Handler {
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch(msg.what){
+                case 1:
+                    Double picLoadPro = (upload_percent_text * 360 * 100) / 100;
+                    progress.setProgress(picLoadPro.intValue());
+                    break;
+                case 2:
+                    Log.e(">>>>>>>>>>>>","可以进行下一步请求");
+                    break;
+                default:
+
+                    break;
+            }
+
+            super.handleMessage(msg);
+        }
+
     }
 }

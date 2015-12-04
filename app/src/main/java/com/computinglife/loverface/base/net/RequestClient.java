@@ -17,13 +17,19 @@ import java.io.InputStream;
  */
 public class RequestClient {
 
-    public static final String BASE_DATA_INTERFACE_URL = "http://loverfaceserver-youngliu.myalauda.cn/LoverFaceServer";
+    public static final String BASE_DATA_INTERFACE_URL = "http://loverface-youngliu.myalauda.cn/LoverFaceServer/";
     public static final String BASE_IMG_INTERFACE_URL = "http://7xlamq.com2.z0.glb.qiniucdn.com/";
 
     public static void post(Context context, RequestParams params, String urlParams,
                             AsyncHttpResponseHandler responseHandler) {
         AsyncHttpClient client = AsyncClientSingleton.getInstance();
         client.post((urlParams), params, responseHandler);
+    }
+
+    public static void get(Context context, String url, RequestParams parameters, ResponseHandlerInterface responseHandler) {
+        AsyncHttpClient client = AsyncClientSingleton.getInstance();
+        client.addHeader("Accept", "application/json");
+        client.get(context, getBaseDataInterfaceUrl() + url, parameters, responseHandler);
     }
 
     public static void post(Context context, HttpEntity entity, ResponseHandlerInterface responseHandler) {
@@ -42,6 +48,8 @@ public class RequestClient {
             return null;
         }
     }
+
+
 
     private static String getBaseDataInterfaceUrl() {
         return BASE_DATA_INTERFACE_URL;

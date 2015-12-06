@@ -34,5 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/button_testface"
         android:layout_alignStart="@+id/button_testface"
-        android:layout_below="@+id/button_testface" />
+        android:layout_below="@+id/button_testface"
+        android:background="@drawable/textview_border"
+        android:textSize="40px" />
 </RelativeLayout>

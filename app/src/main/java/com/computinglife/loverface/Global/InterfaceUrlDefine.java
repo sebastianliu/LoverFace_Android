@@ -6,4 +6,8 @@ package com.computinglife.loverface.Global;
  */
 public class InterfaceUrlDefine {
     public static final String GETUPLOADPICTOKEN = "admin/getuploadtoken";
+
+    public static final String TESTFACE = "admin/testface";
+
+    public static final String TESTLOVERFACE = "admin/testloverface";
 }

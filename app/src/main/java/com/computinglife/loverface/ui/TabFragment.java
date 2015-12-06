@@ -157,14 +157,14 @@ public class TabFragment extends Fragment {
                 });
 
                 break;
-            case MainActivity.PAGE2:
-                //友颜界面
-
-                break;
-            case MainActivity.PAGE3:
-                //我
-
-                break;
+//            case MainActivity.PAGE2:
+//                //友颜界面
+//
+//                break;
+//            case MainActivity.PAGE3:
+//                //我
+//
+//                break;
             default:
 
                 break;

@@ -36,25 +36,7 @@
             oxford:text="@string/tab_loverface"
             oxford:text_size="12sp" />
 
-        <com.computinglife.loverface.ui.ChangeColorIconWithTextView
-            android:id="@+id/id_indicator_three"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:padding="5dp"
-            oxford:icon_oxford="@mipmap/ic_menu_emoticons"
-            oxford:text="@string/tab_find"
-            oxford:text_size="12sp" />
 
-        <com.computinglife.loverface.ui.ChangeColorIconWithTextView
-            android:id="@+id/id_indicator_four"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:padding="5dp"
-            oxford:icon_oxford="@mipmap/ic_menu_allfriends"
-            oxford:text="@string/tab_me"
-            oxford:text_size="12sp" />
     </LinearLayout>
 
 </LinearLayout>

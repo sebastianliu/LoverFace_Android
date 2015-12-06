@@ -27,8 +27,8 @@ public class MainActivity extends FragmentActivity implements
 
     public final static int PAGE0 = 0;
     public final static int PAGE1 = 1;
-    public final static int PAGE2 = 2;
-    public final static int PAGE3 = 3;
+//    public final static int PAGE2 = 2;
+//    public final static int PAGE3 = 3;
 
     private List<ChangeColorIconWithTextView> mTabIndicator = new ArrayList<>();
 
@@ -46,7 +46,7 @@ public class MainActivity extends FragmentActivity implements
 
     private void initDatas() {
 
-        for (int index = 0; index < 4; index++) {
+        for (int index = 0; index < 2; index++) {
             TabFragment tabFragment = new TabFragment();
             Bundle args = new Bundle();
             args.putInt("index", index);
@@ -80,18 +80,18 @@ public class MainActivity extends FragmentActivity implements
     private void initTabIndicator() {
         ChangeColorIconWithTextView one = (ChangeColorIconWithTextView) findViewById(R.id.id_indicator_one);
         ChangeColorIconWithTextView two = (ChangeColorIconWithTextView) findViewById(R.id.id_indicator_two);
-        ChangeColorIconWithTextView three = (ChangeColorIconWithTextView) findViewById(R.id.id_indicator_three);
-        ChangeColorIconWithTextView four = (ChangeColorIconWithTextView) findViewById(R.id.id_indicator_four);
+//        ChangeColorIconWithTextView three = (ChangeColorIconWithTextView) findViewById(R.id.id_indicator_three);
+//        ChangeColorIconWithTextView four = (ChangeColorIconWithTextView) findViewById(R.id.id_indicator_four);
 
         mTabIndicator.add(one);
         mTabIndicator.add(two);
-        mTabIndicator.add(three);
-        mTabIndicator.add(four);
+//        mTabIndicator.add(three);
+//        mTabIndicator.add(four);
 
         one.setOnClickListener(this);
         two.setOnClickListener(this);
-        three.setOnClickListener(this);
-        four.setOnClickListener(this);
+//        three.setOnClickListener(this);
+//        four.setOnClickListener(this);
 
         one.setIconAlpha(1.0f);
     }
@@ -135,14 +135,14 @@ public class MainActivity extends FragmentActivity implements
                 mTabIndicator.get(PAGE1).setIconAlpha(1.0f);
                 mViewPager.setCurrentItem(PAGE1, false);
                 break;
-            case R.id.id_indicator_three:
-                mTabIndicator.get(PAGE2).setIconAlpha(1.0f);
-                mViewPager.setCurrentItem(PAGE2, false);
-                break;
-            case R.id.id_indicator_four:
-                mTabIndicator.get(PAGE3).setIconAlpha(1.0f);
-                mViewPager.setCurrentItem(PAGE3, false);
-                break;
+//            case R.id.id_indicator_three:
+//                mTabIndicator.get(PAGE2).setIconAlpha(1.0f);
+//                mViewPager.setCurrentItem(PAGE2, false);
+//                break;
+//            case R.id.id_indicator_four:
+//                mTabIndicator.get(PAGE3).setIconAlpha(1.0f);
+//                mViewPager.setCurrentItem(PAGE3, false);
+//                break;
 
         }
 
